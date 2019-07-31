@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/freedomsex/self-signed-token/compare/v0.0.4...v0.1.0) (2019-07-31)
+
+
+### Features
+
+* fix ver ([89b78f2](https://github.com/freedomsex/self-signed-token/commit/89b78f2))
+
+
+
 ### [0.0.4](https://github.com/freedomsex/self-signed-token/compare/v0.0.3...v0.0.4) (2019-07-31)
 
 
