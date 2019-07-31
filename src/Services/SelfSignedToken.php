@@ -6,6 +6,8 @@ namespace FreedomSex\Services;
 
 class SelfSignedToken
 {
+    const TOKEN_REGEXP = '/[[:alnum:]]{1,32}\.\d+\.[[:alnum:]]{32}/';
+    
     public $ttl = 60;
 
     private $id = null;
@@ -23,7 +25,7 @@ class SelfSignedToken
         return $this->time;
     }
 
-    public function setTtl(int $time)
+    public function setTtl($time = null)
     {
         if ($time) {
             $this->ttl = $time;
