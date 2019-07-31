@@ -7,7 +7,7 @@ namespace FreedomSex\Services;
 class SelfSignedToken
 {
     const TOKEN_REGEXP = '/[[:alnum:]]{1,32}\.\d+\.[[:alnum:]]{32}/';
-    
+
     public $ttl = 60;
 
     private $id = null;
@@ -59,33 +59,38 @@ class SelfSignedToken
         return md5($this->secret . $prefix . uniqid(mt_rand(1111, 8888), true));
     }
 
-    public function sign($id, $created)
+    public function sign($id, $expire)
     {
         return md5(join(':', [
             $id,
-            $created,
+            $expire,
             $this->secret,
         ]));
     }
 
-    public function create($id = null, $created = null)
+    public function create($id = null, $expire = null)
     {
         $this->id = $id ?: $this->generateId();
-        $created = $created ?: $this->time;
+        $expire = $expire ?: $this->expire($this->time);
         return join('.', [
             $this->id,
-            $created,
-            $this->sign($this->id, $created),
+            $expire,
+            $this->sign($this->id, $expire),
         ]);
     }
 
-    public function expired($created, $ignore = false)
+    public function expire($created)
+    {
+        return $created + $this->ttl;
+    }
+
+    public function expired($expire, $ignore = false)
     {
         if ($ignore) {
             return false;
         }
-        if ($created) {
-            if ($created >= ($this->time - $this->ttl)) {
+        if ($expire) {
+            if ($expire > $this->time) {
                 return false;
             }
         }
@@ -98,8 +103,8 @@ class SelfSignedToken
             return true;
         }
         if ($token) {
-            list($id, $created, $sign) = $this->parse($token);
-            if ($sign === $this->sign($id, $created)) {
+            list($id, $expire, $sign) = $this->parse($token);
+            if ($sign === $this->sign($id, $expire)) {
                 return true;
             }
         }
@@ -108,8 +113,8 @@ class SelfSignedToken
 
     public function valid($token, $ignoreSign = false, $ignoreExpires = false)
     {
-        list($id, $created) = $this->parse($token);
-        $expired = $this->expired($created, $this->bypass ?? $ignoreExpires);
+        list($id, $expire) = $this->parse($token);
+        $expired = $this->expired($expire, $this->bypass ?? $ignoreExpires);
         $signed = $this->signed($token, $this->bypass ?? $ignoreSign);
         if ($id and $signed and !$expired) {
             return $id;

@@ -67,10 +67,16 @@ class SelfSignedTokenTest extends TestCase
     public function testExpired()
     {
         $token = new SelfSignedToken(10, '12345');
-        list($id, $created) = $token->parse($token->create());
-        $this->assertFalse($token->expired($created));
-        $this->assertFalse($token->expired($created - 5));
-        $this->assertTrue($token->expired($created - 15));
+        list($id, $expire) = $token->parse($token->create());
+        $created = $token->created();
+        $this->assertTrue($token->expired($created));
+
+        $this->assertFalse($token->expired($expire - 1));
+        $this->assertFalse($token->expired($expire - 5));
+        $this->assertFalse($token->expired($expire - 9));
+
+        $this->assertTrue($token->expired($expire - 10));
+        $this->assertTrue($token->expired($expire - 15));
         $this->assertTrue($token->expired('1456789023'));
     }
 }
