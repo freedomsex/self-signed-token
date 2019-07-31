@@ -24,7 +24,7 @@ I save the Token ID in the database, and the time of its creation. But I do not 
 MD5 Hash randomly generated string. Very random, but not for any cryptographic protection. Just a random string. You can pass the prefix if you think it is not random enough for you. You can pass any string as `id`.
 
 ```php
-$id = $signedToken->generateId(); 
+$id = $signedToken->generateId();
 // OR
 $id = $signedToken->generateId($prefix);
 
@@ -46,8 +46,8 @@ $signedToken->setTtl($time);
 $token = $signedToken->create();
 $created = $signedToken->created(); // get creation time
 // OR set any time
-$token = $signedToken->create($id, $created); 
-$token = $signedToken->create(null, $created); 
+$token = $signedToken->create($id, $created);
+$token = $signedToken->create(null, $created);
 ```
 
 ### Signature
@@ -63,16 +63,16 @@ $token = $signedToken->create();
 
 #### Bypass
  
-`setBypass(true)` - ignore Signature and Expiration time 
+`setBypass(true)` - ignore Signature and Expiration time
 
 ## Validate
 
 `$ignoreSign` and `$ignoreExpires` boolean
 
 ```php
-$signedToken->valid($token); 
+$signedToken->valid($token);
 // OR
-$signedToken->valid($token, $ignoreSign); 
+$signedToken->valid($token, $ignoreSign);
 // OR
-$signedToken->valid($token, $ignoreSign, $ignoreExpires);  
+$signedToken->valid($token, $ignoreSign, $ignoreExpires);
 ```
