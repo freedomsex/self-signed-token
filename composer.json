@@ -2,7 +2,7 @@
     "name": "freedomsex/self-signed-token",
     "description": "A simple self-signed token based on a secret string and creation time.",
     "type": "library",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "license": "MIT",
     "authors": [
         {
