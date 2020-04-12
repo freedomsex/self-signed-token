@@ -11,6 +11,10 @@ I use this token to simply check its expiration from the time it was created. An
 
 I save the Token ID in the database, and the time of its creation. But I do not query the database if the token is not valid or expired. This is convenient for preventing flooding with requests, and as a simple but reliable protection against DDoS, is relatively.
 
+---
++**EasySignedToken** - simplified version of the token. Expiration time is not saved in token. Instead, the token _creation time_ is saved. During validation, the token lifetime set in the configuration is used. In this case, you can change the token's lifetime after its creation.
+
+
 ## Token
 
 `6e000eeabea27aa13a0476d656e5a15e.1560148598.70272e700a46b3040ee53f2b083e3875`
