@@ -1489,5 +1489,5 @@
         "php": "7.2.*"
     },
     "platform-dev": [],
-    "version": "0.1.0"
+    "version": "1.0.1"
 }

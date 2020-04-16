@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/freedomsex/self-signed-token/compare/v0.1.0...v1.0.1) (2020-04-16)
+
+
+### Features
+
+* Easy Signed Token ([330773a](https://github.com/freedomsex/self-signed-token/commit/330773a42529a6514a26de3e88b5af6bb508e495))
+
+
+### Bug Fixes
+
+* validate null token - false ([190e737](https://github.com/freedomsex/self-signed-token/commit/190e737919b347d15bafc3be8f9fcb35c541c31a))
+
+### [1.1.1](https://github.com/freedomsex/self-signed-token/compare/v1.1.0...v1.1.1) (2020-04-16)
+
+## [1.1.0](https://github.com/freedomsex/self-signed-token/compare/v0.1.0...v1.1.0) (2020-04-16)
+
+
+### Features
+
+* Easy Signed Token ([330773a](https://github.com/freedomsex/self-signed-token/commit/330773a42529a6514a26de3e88b5af6bb508e495))
+
+
+### Bug Fixes
+
+* validate null token - false ([190e737](https://github.com/freedomsex/self-signed-token/commit/190e737919b347d15bafc3be8f9fcb35c541c31a))
+
 ## [0.1.0](https://github.com/freedomsex/self-signed-token/compare/v0.0.4...v0.1.0) (2019-07-31)
 
 
