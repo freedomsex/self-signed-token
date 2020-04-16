@@ -51,6 +51,32 @@ class EasySignedTokenTest extends TestCase
         $this->assertCount(3, $this->token->parse($token));
     }
 
+    public function testTest()
+    {
+        $this->assertTrue($this->token->test('6e000eeabea27aa13a0476d656e5a15e.1560148598.70272e700a46b3040ee53f2b083e3875'));
+        $this->assertFalse($this->token->test('6e000eeabea27aa13a0476d656e5a15e.1560148598.70272e700a46b3040_ee53f2b083e3875'));
+        $this->assertFalse($this->token->test('6e000eeabea27aa13a0476d656e5a15e.1560148598.70272e700a46b3'));
+        $this->assertFalse($this->token->test('6e000eeabea27aa13a0476d656e5a15e.1560148598'));
+        $this->assertFalse($this->token->test('6e000eeabea27aa13a0476d656e5a15e'));
+    }
+
+
+//    /**
+//     * @dataProvider tokenIdVariant
+//     */
+//    public function testParseId($token, $result)
+//    {
+//        $this->assertCount(3, $this->token->parse($token));
+//    }
+//
+//    public function tokenIdVariant()
+//    {
+//        return [
+//            ['6e000eeabea27aa13a0476d656e5a15e.1560148598.70272e700a46b3040ee53f2b083e3875', ],
+//        ];
+//    }
+
+
     public function testGenerate()
     {
         $this->assertRegExp('/^[a-f0-9]{32}$/', $this->token->generateId());
@@ -67,7 +93,7 @@ class EasySignedTokenTest extends TestCase
     public function testExpired()
     {
         $token = new EasySignedToken(10, '12345');
-        list($id, $time) = $token->parse($token->create());
+        [, $time] = $token->parse($token->create());
         $created = $token->created();
         $this->assertFalse($token->expired($created));
 

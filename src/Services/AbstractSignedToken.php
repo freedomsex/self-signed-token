@@ -48,13 +48,21 @@ abstract class AbstractSignedToken
         return $this->id;
     }
 
-    public function parse($token)
+    public function test($token): bool
     {
-        $data = explode('.', $token);
-        if (count($data) == 3) {
-            return $data;
+        if (preg_match(self::TOKEN_REGEXP, $token)) {
+            return true;
         }
         return false;
+    }
+
+    public function parse($token)
+    {
+        if (!$this->test($token)) {
+            throw new \TypeError('This sting does not match the token format');
+        }
+        $data = explode('.', $token);
+        return $data;
     }
 
     public function generateId($prefix = ''): string
@@ -100,9 +108,12 @@ abstract class AbstractSignedToken
         return false;
     }
 
-    public function valid(string $token, bool $ignoreSign = false, bool $ignoreExpires = false)
+    public function valid(?string $token, bool $ignoreSign = false, bool $ignoreExpires = false)
     {
-        list($id, $time) = $this->parse($token);
+        if (!$token or !$this->test($token)) {
+            return false;
+        }
+        [$id, $time] = $this->parse($token);
         $expired = $this->expired($time, $this->bypass ?? $ignoreExpires);
         $signed = $this->signed($token, $this->bypass ?? $ignoreSign);
         if ($id and $signed and !$expired) {
