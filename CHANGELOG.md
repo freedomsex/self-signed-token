@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://github.com/freedomsex/self-signed-token/compare/v1.0.1...v1.0.2) (2020-10-12)
+
+
+### Bug Fixes
+
+* uuid support ([f81cfb9](https://github.com/freedomsex/self-signed-token/commit/f81cfb9c8cbcfaa08aba175740cbf9a898797c02))
+
 ### [1.0.1](https://github.com/freedomsex/self-signed-token/compare/v0.1.0...v1.0.1) (2020-04-16)
 
 
