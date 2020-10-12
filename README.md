@@ -25,7 +25,7 @@ I save the Token ID in the database, and the time of its creation. But I do not 
 
 ### Token ID
 
-MD5 Hash randomly generated string. Very random, but not for any cryptographic protection. Just a random string. You can pass the prefix if you think it is not random enough for you. You can pass any string as `id`.
+MD5 Hash randomly generated string. Very random, but not for any cryptographic protection. Just a random string. You can pass the prefix if you think it is not random enough for you. You can pass any string `[[:alnum:]-+=_]{1,40}` as `id`.
 
 ```php
 $id = $signedToken->generateId();

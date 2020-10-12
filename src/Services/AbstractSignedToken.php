@@ -6,7 +6,7 @@ namespace FreedomSex\Services;
 
 abstract class AbstractSignedToken
 {
-    const TOKEN_REGEXP = '/[[:alnum:]]{1,32}\.\d+\.[[:alnum:]]{32}/';
+    const TOKEN_REGEXP = '/[[:alnum:]-+=_]{1,40}\.\d+\.[[:alnum:]]{32}/';
 
     public $secretEnvName = 'APP_SECRET';
     public $tokenLifetime = 60;
