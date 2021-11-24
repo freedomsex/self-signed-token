@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.4](https://github.com/freedomsex/self-signed-token/compare/v1.0.3...v1.0.4) (2021-11-24)
+
+
+### Bug Fixes
+
+* secret, remove ENV ([ac843b0](https://github.com/freedomsex/self-signed-token/commit/ac843b0080560692336745ef41a369f5d4ee72ad))
+
 ### [1.0.3](https://github.com/freedomsex/self-signed-token/compare/v1.0.2...v1.0.3) (2020-10-12)
 
 
