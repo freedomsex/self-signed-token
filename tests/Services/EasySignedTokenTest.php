@@ -8,11 +8,11 @@ use PHPUnit\Framework\TestCase;
 class EasySignedTokenTest extends TestCase
 {
     /**
-     * @var SelfSignedToken
+     * @var EasySignedToken
      */
     public $token;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->token = new EasySignedToken(10, '12345');
     }
@@ -60,26 +60,18 @@ class EasySignedTokenTest extends TestCase
         $this->assertFalse($this->token->test('6e000eeabea27aa13a0476d656e5a15e'));
     }
 
-
-//    /**
-//     * @dataProvider tokenIdVariant
-//     */
-//    public function testParseId($token, $result)
-//    {
-//        $this->assertCount(3, $this->token->parse($token));
-//    }
-//
-//    public function tokenIdVariant()
-//    {
-//        return [
-//            ['6e000eeabea27aa13a0476d656e5a15e.1560148598.70272e700a46b3040ee53f2b083e3875', ],
-//        ];
-//    }
-
+    public function testSecret()
+    {
+        $generator = new EasySignedToken(10, '12345');
+        $token = $generator->create();
+        $this->assertNotFalse($generator->valid($token));
+        $generator->setSecret('top secret string');
+        $this->assertFalse($generator->valid($token));
+    }
 
     public function testGenerate()
     {
-        $this->assertRegExp('/^[a-f0-9]{32}$/', $this->token->generateId());
+        $this->assertMatchesRegularExpression('/^[a-f0-9]{32}$/', $this->token->generateId());
     }
 
     public function testSign()

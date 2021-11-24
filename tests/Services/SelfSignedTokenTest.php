@@ -12,7 +12,7 @@ class SelfSignedTokenTest extends TestCase
      */
     public $token;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->token = new SelfSignedToken(10, '12345');
     }

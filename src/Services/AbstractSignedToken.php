@@ -8,7 +8,6 @@ abstract class AbstractSignedToken
 {
     const TOKEN_REGEXP = '/[[:alnum:]\-+=_]{1,40}\.\d+\.[[:alnum:]]{32}/';
 
-    public $secretEnvName = 'APP_SECRET';
     public $tokenLifetime = 60;
 
     protected $secret;
@@ -18,9 +17,23 @@ abstract class AbstractSignedToken
 
     public function __construct($tokenLifetime = null, $secret = null)
     {
-        $this->secret = $secret ?? getenv($this->secretEnvName);
-        $this->time = time();
         $this->setTtl($tokenLifetime);
+        $this->setSecret($secret);
+        $this->setCreated(time());
+    }
+
+    public function setCreated($time)
+    {
+        if ($time) {
+            $this->time = $time;
+        }
+    }
+
+    public function setTtl($time = null)
+    {
+        if ($time) {
+            $this->tokenLifetime = $time;
+        }
     }
 
     public function created(): int
@@ -28,10 +41,10 @@ abstract class AbstractSignedToken
         return $this->time;
     }
 
-    public function setTtl($time = null)
+    public function setSecret($secret)
     {
-        if ($time) {
-            $this->tokenLifetime = $time;
+        if ($secret) {
+            $this->secret = $secret;
         }
     }
 
@@ -84,15 +97,9 @@ abstract class AbstractSignedToken
         return $created + $this->tokenLifetime;
     }
 
-    public function create($id = null, $expire = null): string
-    {
-        //
-    }
+    abstract public function create($id = null, $expire = null): string;
 
-    public function expired(int $expire, $ignore = false): bool
-    {
-        //
-    }
+    abstract public function expired(int $expire, $ignore = false): bool;
 
     public function signed(string $token, bool $ignore = false): bool
     {

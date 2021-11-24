@@ -56,7 +56,7 @@ $token = $signedToken->create(null, $created);
 
 ### Signature
 
-Simple MD5 Hash string. Generated based on Token ID, Expiration time and Secret phrase. It may be more convenient to use the environment variable. Now it defaults to 'APP_SECRET'
+Simple MD5 Hash string. Generated based on Token ID, Expiration time and Secret phrase.
 
 ```php
 $signedToken = new SelfSignedToken($ttl);
